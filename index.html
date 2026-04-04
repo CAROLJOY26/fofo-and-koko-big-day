@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>FOFO AND KOKO'S BIG DAY💍</title>
+
+<!-- Google Font: Courgette -->
+<link href="https://fonts.googleapis.com/css2?family=Courgette&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Courgette', cursive;
+  background: linear-gradient(to right, #fff8f0, #ffccd1, #f7ac5085);
+  overflow-x: hidden;
+  color: #000;
+}
+
+/* Falling hearts */
+.hearts-container {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+.heart {
+  position: absolute;
+  top: -10px;
+  animation: fall linear infinite;
+  opacity: 0.8;
+}
+@keyframes fall {
+  to { transform: translateY(110vh); }
+}
+
+/* Sections */
+.section {
+  position: relative;
+  z-index: 1;
+  padding: 30px 20px;
+  text-align: center;
+}
+
+/* RSVP Section */
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  width: 90%;
+  max-width: 900px;
+  margin: 40px auto;
+  gap: 30px;
+  background: rgba(255,248,240,0.655);
+  border-radius: 25px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.486);
+}
+
+.container .photo {
+  flex: 1 1 250px;
+  max-width: 300px;
+  border-radius: 25px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  object-fit: cover;
+}
+
+.container .form-content {
+  flex: 1 1 400px;
+  text-align: center;
+  padding: 0 20px;
+}
+
+/* Event info */
+.event-info p {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 5px 0;
+}
+
+/* Inputs and buttons */
+input, textarea {
+  width: 100%;
+  max-width: 300px;
+  padding: 12px;
+  margin: 8px auto;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  font-family: 'Courgette', cursive;
+  display: block;
+}
+
+button {
+  background: #000;
+  color: white;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 10px;
+  font-size: 18px;
+}
+
+button:hover {
+  background: #333;
+}
+
+/* Timeline Section */
+.timeline-section {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 30px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+  width: 90%;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Gallery */
+.gallery-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.gallery-title {
+  font-size: 22px;
+  color: #000;
+  margin-bottom: 5px;
+  text-align: center;
+  font-weight: bold;
+  cursor: pointer;
+}
+.gallery-container {
+  position: relative;
+  width: 300px;
+  height: 300px;
+}
+.gallery-container img {
+  position: absolute;
+  top: 0; left: 0;
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  cursor: pointer;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+/* Countdown Calendar */
+#countdown-container {
+  max-width: 400px;
+  background: rgba(255, 255, 255, 0.483);
+  padding: 30px;
+  border-radius: 25px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#countdown {
+  display: flex;
+  gap: 15px;
+}
+.countdown-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.countdown-block {
+  width: 60px;
+  height: 60px;
+  background: #f0f0f0;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  position: relative;
+  overflow: hidden;
+}
+.countdown-number {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+.countdown-item span.label {
+  font-size: 14px;
+  font-weight: normal;
+  color: #555;
+}
+
+/* Radio Buttons */
+#attendance-container label,
+#guests-container label {
+  display: inline-block;
+  margin: 5px 10px;
+  padding: 8px 15px;
+  border: 2px solid #000;
+  border-radius: 20px;
+  cursor: pointer;
+  color: #000;
+  transition: 0.3s;
+  font-family: 'Courgette', cursive;
+}
+#attendance-container input,
+#guests-container input { display: none; }
+#attendance-container input:checked + span,
+#guests-container input:checked + span {
+  background: #000;
+  color: white;
+}
+
+/* Google Map */
+#map {
+  width: 100%;
+  max-width: 600px;
+  height: 300px;
+  border-radius: 15px;
+  margin: 30px auto 0 auto;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.46);
+}
+
+/* Responsive */
+@media(max-width:900px){
+  .container, .timeline-section {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="hearts-container"></div>
+
+<!-- RSVP SECTION -->
+<div class="section">
+  <div class="container">
+    <img class="photo" src="WhatsApp Image 2026-04-04 at 10.41.56 AM.jpeg" alt="Our Photo">
+
+    <div class="form-content">
+      <h2>You're Invited to Our Beginning of Forever 💖</h2>
+      <div class="event-info">
+        <p>Date: May 28, 2026</p>
+        <p>Time: 3:00 PM</p>
+        <p>Location: Villa Al Rizk, King Mariout</p>
+      </div>
+
+      <input id="name" placeholder="Your Name ">
+
+      <div id="attendance-container">
+        <p>Will you attend?</p>
+        <label><input type="radio" name="attendance" value="Yes"><span>Yes</span></label>
+        <label><input type="radio" name="attendance" value="No"><span>No</span></label>
+      </div>
+
+      <div id="guests-container" style="display:none; margin-top:10px;">
+        <p>Number of Guests</p>
+        <label><input type="radio" name="guests" value="1"><span>1</span></label>
+        <label><input type="radio" name="guests" value="2"><span>2</span></label>
+        <label><input type="radio" name="guests" value="3"><span>3</span></label>
+        <label><input type="radio" name="guests" value="4"><span>4</span></label>
+      </div>
+
+      <textarea id="message" placeholder="Message (Optional) "></textarea>
+      <button onclick="send()">Confirm Attendance </button>
+    </div>
+  </div>
+
+  <!-- Google Map -->
+  <div id="map"></div>
+</div>
+
+<!-- Timeline Section: Photos + Countdown Side by Side -->
+<div class="section timeline-section">
+  <div class="gallery-wrapper">
+    <div class="gallery-title" onclick="alert('Click to see more photos! 💖')">Our Story in Photos – Click to See More</div>
+    <div class="gallery-container" id="stacked-gallery">
+      <img src="WhatsApp Image 2026-04-04 at 11.34.36 AM.jpeg" style="z-index:1">
+      <img src="WhatsApp Image 2026-04-04 at 11.34.40 AM.jpeg" style="z-index:2">
+      <img src="WhatsApp Image 2026-04-04 at 11.34.46 AM.jpeg" style="z-index:3">
+      <img src="WhatsApp Image 2026-04-04 at 11.34.47 AM.jpeg" style="z-index:4">
+      <img src="WhatsApp Image 2026-04-04 at 11.34.50 AM.jpeg" style="z-index:5">
+      <img src="WhatsApp Image 2026-04-04 at 11.34.51 AM.jpeg" style="z-index:6">
+    </div>
+  </div>
+
+  <div id="countdown-container">
+    <h2>Countdown to Our Special Day ⏳</h2>
+    <div id="countdown">
+      <div class="countdown-item">
+        <div class="countdown-block"><div class="countdown-number" id="days">0</div></div>
+        <span class="label">Days</span>
+      </div>
+      <div class="countdown-item">
+        <div class="countdown-block"><div class="countdown-number" id="hours">0</div></div>
+        <span class="label">Hours</span>
+      </div>
+      <div class="countdown-item">
+        <div class="countdown-block"><div class="countdown-number" id="minutes">0</div></div>
+        <span class="label">Minutes</span>
+      </div>
+      <div class="countdown-item">
+        <div class="countdown-block"><div class="countdown-number" id="seconds">0</div></div>
+        <span class="label">Seconds</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* RSVP Guests logic */
+document.querySelectorAll('input[name="attendance"]').forEach(radio => {
+  radio.addEventListener('change', () => {
+    const guestsDiv = document.getElementById('guests-container');
+    guestsDiv.style.display = radio.value === 'Yes' ? 'block' : 'none';
+    if(radio.value !== 'Yes'){
+      document.querySelectorAll('input[name="guests"]').forEach(g => g.checked = false);
+    }
+  });
+});
+
+/* Falling hearts */
+const container = document.querySelector('.hearts-container');
+function createHeart() {
+  const heart = document.createElement('div');
+  heart.classList.add('heart');
+  const hearts = ['💖','💕','💗','💘','💝','❤️'];
+  heart.innerHTML = hearts[Math.floor(Math.random()*hearts.length)];
+  heart.style.left = Math.random()*100+'vw';
+  heart.style.fontSize = (Math.random()*20+20)+'px';
+  heart.style.animationDuration = (Math.random()*3+3)+'s';
+  container.appendChild(heart);
+  setTimeout(()=>heart.remove(),6000);
+}
+setInterval(createHeart,300);
+
+/* Stacked gallery */
+const stackedGallery = document.getElementById('stacked-gallery');
+const stackedImages = Array.from(stackedGallery.querySelectorAll('img'));
+const originalSrcs = stackedImages.map(img => img.src);
+
+stackedImages.forEach(img => {
+  img.addEventListener('click', () => {
+    let currentIndex = originalSrcs.indexOf(img.src);
+    let nextIndex = (currentIndex + 1) % originalSrcs.length;
+    img.src = originalSrcs[nextIndex];
+    stackedImages.forEach((i, idx) => { i.style.zIndex = stackedImages.length - idx; });
+  });
+});
+
+/* Countdown Timer */
+const countDownDate = new Date("May 28, 2026 00:00:00").getTime();
+function animateNumber(el, newValue) {
+  if(el.textContent != newValue){
+    el.style.transform = "translateY(-100%)";
+    el.style.opacity = "0";
+    setTimeout(() => {
+      el.textContent = newValue;
+      el.style.transition = "none";
+      el.style.transform = "translateY(100%)";
+      setTimeout(() => {
+        el.style.transition = "transform 0.5s ease, opacity 0.5s ease";
+        el.style.transform = "translateY(0)";
+        el.style.opacity = "1";
+      },20);
+    },250);
+  }
+}
+function updateCountdown() {
+  const now = new Date().getTime();
+  const distance = countDownDate - now;
+  if(distance < 0){
+    document.getElementById("countdown").innerHTML = "The Day Has Arrived! 🎉";
+    return;
+  }
+  const days = Math.floor(distance/(1000*60*60*24));
+  const hours = Math.floor((distance%(1000*60*60*24))/(1000*60*60));
+  const minutes = Math.floor((distance%(1000*60*60))/(1000*60));
+  const seconds = Math.floor((distance%(1000*60))/1000);
+  animateNumber(document.getElementById("days"), days);
+  animateNumber(document.getElementById("hours"), hours);
+  animateNumber(document.getElementById("minutes"), minutes);
+  animateNumber(document.getElementById("seconds"), seconds);
+}
+updateCountdown();
+setInterval(updateCountdown,1000);
+
+/* Send to Google Sheets and Confirmation page */
+function send() {
+  const name = document.getElementById("name").value.trim();
+  const attendance = document.querySelector('input[name="attendance"]:checked');
+  const guests = document.querySelector('input[name="guests"]:checked');
+  const message = document.getElementById("message").value.trim();
+
+  if (!name) {
+    alert("Please enter your name 😊");
+    return;
+  }
+  if (!attendance) {
+    alert("Please select whether you'll attend 💖");
+    return;
+  }
+
+  const params = new URLSearchParams();
+  params.append("name", name);
+  params.append("attendance", attendance.value);
+  params.append("guests", guests ? guests.value : "");
+  params.append("message", message);
+
+  const webAppUrl = "https://script.google.com/macros/s/AKfycbw2XDkV7o4f_sURFJGVjFFdIkonPNf2sx7Te2VMgYunOWb5zX7IkpJQI5bq2syzArLP/exec"; // <-- Replace with your Google Apps Script Web App URL
+
+  fetch(webAppUrl + "?" + params.toString(), { method: "GET" })
+    .then(response => {
+      // redirect to confirmation page
+      const confUrl = `confirmation.html?name=${encodeURIComponent(name)}&attendance=${encodeURIComponent(attendance.value)}`;
+      window.location.href = confUrl;
+    })
+    .catch(err => { 
+      alert("Error submitting form. Please try again."); 
+      console.error(err);
+    });
+}
+
+/* Google Maps Init */
+function initMap() {
+  const location = { lat: 30.9758413, lng: 29.6707148 };
+  const map = new google.maps.Map(document.getElementById("map"), {
+    zoom: 15,
+    center: location
+  });
+  new google.maps.Marker({
+    position: location,
+    map: map
+  });
+}
+</script>
+
+<script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC78acD03HDfj0KjQAfqOAT0tWW32pUmQU&callback=initMap">
+</script>
+
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thank You! 💖</title>
+<style>
+body {
+  font-family: 'Courgette', cursive;
+  text-align: center;
+  padding: 50px;
+  background: linear-gradient(to right, #fff8f0, #ffccd1, #f7ac5085);
+  color: #000;
+}
+h1 { font-size: 32px; margin-bottom: 20px; }
+p { font-size: 22px; }
+</style>
+</head>
+<body>
+
+<h1>Thank You for Your RSVP! 💖</h1>
+<p id="message">We have recorded your attendance.</p>
+
+<script>
+// Function to get query parameters from URL
+function getQueryParams() {
+  const params = {};
+  const queryString = window.location.search.slice(1); // remove '?'
+  const pairs = queryString.split('&');
+  pairs.forEach(pair => {
+    const [key, value] = pair.split('=');
+    if(key) params[decodeURIComponent(key)] = decodeURIComponent(value || '');
+  });
+  return params;
+}
+
+const params = getQueryParams();
+const messageEl = document.getElementById("message");
+
+if(params.name && params.attendance){
+  let guestsText = params.guests ? ` with ${params.guests} guest(s)` : '';
+  messageEl.textContent = `Hi ${params.name}! You have RSVP’d "${params.attendance}"${guestsText}. We can’t wait to see you! 💖`;
+} else {
+  messageEl.textContent = "Thank you for your response! 💖";
+}
+</script>
+
+</body>
+</html>
