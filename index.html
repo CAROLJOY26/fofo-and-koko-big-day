@@ -1,20 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>FOFO AND KOKO'S BIG DAY💍</title>
 
 <!-- Google Font: Courgette -->
-<link href="https://fonts.googleapis.com/css2?family=Courgette&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap"rel="stylesheet">
 
 <style>
 body {
   margin: 0;
-  font-family: 'Courgette', cursive;
+  font-family: 'Play', cursive !important;
   background: linear-gradient(to right, #fff8f0, #ffccd1, #f7ac5085);
   overflow-x: hidden;
-  color: #000;
+  color:rgba(0, 0, 0, 1);
+
 }
 
 /* Falling hearts */
@@ -37,21 +38,38 @@ body {
 
 /* Sections */
 .section {
-  position: relative;
-  z-index: 1;
-  padding: 30px 20px;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  flex: 0 0 auto;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+
+.photo-outside img {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  margin:0;
+  border-radius: 50px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
 
 /* RSVP Section */
+
+
 .container {
+  flex: 1;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: center;
+  justify-content:center;
   padding: 40px;
   width: 90%;
-  max-width: 900px;
+  max-width: 600px;
   margin: 40px auto;
   gap: 30px;
   background: rgba(255,248,240,0.655);
@@ -60,18 +78,43 @@ body {
 }
 
 .container .photo {
-  flex: 1 1 250px;
-  max-width: 300px;
-  border-radius: 25px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-  object-fit: cover;
+  width: 400px;  /* smaller photo */
+  height: auto;
+  border-radius: 50px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
 
 .container .form-content {
-  flex: 1 1 400px;
+  flex: 1;         /* takes remaining space */
+  min-width: 300px; /* ensures form doesn't get too small */
+  display: flex;
+  flex-direction: column;
+  align-items: center;   /* 🔥 ده الأهم */
   text-align: center;
-  padding: 0 20px;
 }
+@media(max-width:900px){
+  .container {
+    flex-direction: column; /* stack vertically on mobile */
+    align-items: center;
+    padding: 20%;
+  }
+  .container .photo {
+    width: 80%; /* slightly bigger on mobile */
+    margin-bottom: 20px;
+  }
+  .container .form-content {
+    width: 100%;
+    ;
+  }
+}
+
+.form-content h2 {
+  font-family: 'Play', sans-serif;
+  font-weight: 800; /* makes it less bold */
+  font-size: 28px; /* optional, adjust size */
+  text-align: center; /* optional, keeps it centered */
+}
+
 
 /* Event info */
 .event-info p {
@@ -79,18 +122,27 @@ body {
   font-weight: bold;
   margin: 5px 0;
 }
-
+.event-info,
+#attendance-container,
+#guests-container,
+#gender-container,
+.color-palette {
+  width: 100%;
+  text-align: center;
+}
 /* Inputs and buttons */
 input, textarea {
   width: 100%;
-  max-width: 300px;
+  max-width: 400px;
   padding: 12px;
-  margin: 8px auto;
+  margin: 10px auto;
   border-radius: 8px;
   border: 1px solid #ccc;
   font-size: 16px;
-  font-family: 'Courgette', cursive;
+  font-family: 'Poller One', cursive !important;
   display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 button {
@@ -103,10 +155,7 @@ button {
   margin-top: 10px;
   font-size: 18px;
 }
-
-button:hover {
-  background: #333;
-}
+button:hover { background: #333; }
 
 /* Timeline Section */
 .timeline-section {
@@ -160,14 +209,14 @@ button:hover {
   padding: 30px;
   border-radius: 25px;
   box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-  display: flex;
+  display:block;
   flex-direction: column;
   align-items: center;
+  margin-top: 50px;
 }
-
 #countdown {
   display: flex;
-  gap: 15px;
+  gap: 20px;
 }
 .countdown-item {
   display: flex;
@@ -175,7 +224,7 @@ button:hover {
   align-items: center;
 }
 .countdown-block {
-  width: 60px;
+  width: 80px;
   height: 60px;
   background: #f0f0f0;
   border-radius: 10px;
@@ -202,7 +251,8 @@ button:hover {
 
 /* Radio Buttons */
 #attendance-container label,
-#guests-container label {
+#guests-container label,
+#gender-container label {
   display: inline-block;
   margin: 5px 10px;
   padding: 8px 15px;
@@ -214,10 +264,12 @@ button:hover {
   font-family: 'Courgette', cursive;
 }
 #attendance-container input,
-#guests-container input { display: none; }
+#guests-container input,
+#gender-container input { display: none; }
 #attendance-container input:checked + span,
-#guests-container input:checked + span {
-  background: #000;
+#guests-container input:checked + span,
+#gender-container input:checked + span {
+  background: #0000006a;
   color: white;
 }
 
@@ -231,11 +283,94 @@ button:hover {
   box-shadow: 0 5px 20px rgba(0,0,0,0.46);
 }
 
-/* Responsive */
-@media(max-width:900px){
-  .container, .timeline-section {
-    flex-direction: column;
-    text-align: center;
+/* Color Palette */
+.color-palette { margin-top: 15px; }
+.color-palette p { font-size: 18px; font-weight: bold; }
+.colors {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+.color-option {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid rgba(0,0,0,0.4);
+  transition: transform 0.3s, border 0.3s;
+}
+.color-option:hover { transform: scale(1.1); }
+.color-option.selected { border: 3px solid #000; }
+
+
+
+/* ===== Mobile Friendly Adjustments ===== */
+@media(max-width: 900px){
+  .container {
+    flex-direction: column; /* stack vertically */
+    align-items: center;
+    padding: 20px; /* smaller padding on mobile */
+    margin: 20px auto;
+  }
+  .container .photo {
+    width: 80%; /* responsive image */
+    margin-bottom: 20px;
+  }
+  .container .form-content {
+    width: 100%;
+    min-width: auto;
+  }
+  .form-content h2 {
+    font-size: 24px; /* smaller headline */
+  }
+  input, textarea, button {
+    max-width: 90%; /* easier to tap on mobile */
+    font-size: 16px;
+  }
+}
+
+/* Gallery adjustments for mobile */
+@media(max-width:600px){
+  .gallery-container {
+    width: 90%;
+    height: 200px;
+  }
+  .gallery-container img {
+    width: 100%;
+    height: 200px;
+  }
+}
+
+/* Countdown adjustments for mobile */
+@media(max-width:600px){
+  #countdown-container {
+    width: 90%;
+    padding: 20px;
+  }
+  .countdown-block {
+    width: 60px;
+    height: 50px;
+    font-size: 20px;
+  }
+  .countdown-item span.label {
+    font-size: 12px;
+  }
+}
+
+/* Map adjustments for mobile */
+@media(max-width:600px){
+  #map {
+    height: 200px;
+    width: 90%;
+  }
+}
+
+/* Optional: make hearts smaller on mobile so they don’t overlap */
+@media(max-width:600px){
+  .heart {
+    font-size: 15px !important;
   }
 }
 </style>
@@ -244,11 +379,11 @@ button:hover {
 
 <div class="hearts-container"></div>
 
-<!-- RSVP SECTION -->
 <div class="section">
-  <div class="container">
+   <div class="photo-outside">
     <img class="photo" src="WhatsApp Image 2026-04-04 at 10.41.56 AM.jpeg" alt="Our Photo">
-
+   </div>
+    <div class="container">
     <div class="form-content">
       <h2>You're Invited to Our Beginning of Forever 💖</h2>
       <div class="event-info">
@@ -267,30 +402,50 @@ button:hover {
 
       <div id="guests-container" style="display:none; margin-top:10px;">
         <p>Number of Guests</p>
-        <label><input type="radio" name="guests" value="1"><span>1</span></label>
-        <label><input type="radio" name="guests" value="2"><span>2</span></label>
-        <label><input type="radio" name="guests" value="3"><span>3</span></label>
-        <label><input type="radio" name="guests" value="4"><span>4</span></label>
+        <label><input type="radio" name="guests" value="only me"><span>only me </span></label>
+        <label><input type="radio" name="guests" value="+1"><span>+1</span></label>
+      </div>
+
+      <div id="gender-container" style="display:none; margin-top:10px;">
+        <p> Choose Your Gender to see references of the colors </p>
+        <label><input type="radio" name="gender" value="Men"><span>Men</span></label>
+        <label><input type="radio" name="gender" value="Women"><span>Women</span></label>
+      </div>
+
+      <button id="reference-btn" style="display:none;" onclick="showReference()">See Outfit Reference</button>
+
+      <div class="color-palette">
+        <p>You can choose from this palette what suits you</p>
+        <div class="colors">
+          <div class="color-option" style="background:#f8c8dc"></div>
+          <div class="color-option" style="background:#f9d5e5"></div>
+          <div class="color-option" style="background:#ffe5b4"></div>
+          <div class="color-option" style="background:#fff1a8"></div>
+          <div class="color-option" style="background:#c1e1c1"></div>
+          <div class="color-option" style="background:#d6ecfa"></div>
+          <div class="color-option" style="background:#e6d9ff"></div>
+          <div class="color-option" style="background:#f3d1f4"></div>
+        </div>
       </div>
 
       <textarea id="message" placeholder="Message (Optional) "></textarea>
-      <button onclick="send()">Confirm Attendance </button>
+      <button onclick="send()">Confirm Attendance</button>
     </div>
   </div>
-
+</div>
   <!-- Google Map -->
   <div id="map"></div>
-</div>
 
-<!-- Timeline Section: Photos + Countdown Side by Side -->
+
+<!-- Timeline Section -->
 <div class="section timeline-section">
   <div class="gallery-wrapper">
-    <div class="gallery-title" onclick="alert('Click to see more photos! 💖')">Our Story in Photos – Click to See More</div>
+    <div class="gallery-title" onclick="alert('Click to see more photos! 💖')">Our Story in Photos  💖– Click to See More</div>
     <div class="gallery-container" id="stacked-gallery">
-      <img src="WhatsApp Image 2026-04-04 at 11.34.36 AM.jpeg" style="z-index:1">
+      <img src="WhatsApp Image 2026-04-04 at 11.34.47 AM.jpeg" style="z-index:1">
       <img src="WhatsApp Image 2026-04-04 at 11.34.40 AM.jpeg" style="z-index:2">
       <img src="WhatsApp Image 2026-04-04 at 11.34.46 AM.jpeg" style="z-index:3">
-      <img src="WhatsApp Image 2026-04-04 at 11.34.47 AM.jpeg" style="z-index:4">
+      <img src="WhatsApp Image 2026-04-04 at 11.34.36 AM.jpeg" style="z-index:4">
       <img src="WhatsApp Image 2026-04-04 at 11.34.50 AM.jpeg" style="z-index:5">
       <img src="WhatsApp Image 2026-04-04 at 11.34.51 AM.jpeg" style="z-index:6">
     </div>
@@ -320,18 +475,38 @@ button:hover {
 </div>
 
 <script>
-/* RSVP Guests logic */
+/* RSVP Guests & Gender */
 document.querySelectorAll('input[name="attendance"]').forEach(radio => {
   radio.addEventListener('change', () => {
     const guestsDiv = document.getElementById('guests-container');
-    guestsDiv.style.display = radio.value === 'Yes' ? 'block' : 'none';
-    if(radio.value !== 'Yes'){
+    const genderDiv = document.getElementById('gender-container');
+    if (radio.value === 'Yes') {
+      guestsDiv.style.display = 'block';
+      genderDiv.style.display = 'block';
+    } else {
+      guestsDiv.style.display = 'none';
+      genderDiv.style.display = 'none';
       document.querySelectorAll('input[name="guests"]').forEach(g => g.checked = false);
+      document.querySelectorAll('input[name="gender"]').forEach(g => g.checked = false);
+      document.getElementById('reference-btn').style.display = 'none';
     }
   });
 });
 
-/* Falling hearts */
+/* Reference Button */
+document.querySelectorAll('input[name="gender"]').forEach(radio => {
+  radio.addEventListener('change', () => {
+    document.getElementById('reference-btn').style.display = 'inline-block';
+  });
+});
+function showReference() {
+  const gender = document.querySelector('input[name="gender"]:checked');
+  if(!gender){ alert("Please select your gender first 😊"); return; }
+  let url = gender.value === 'Men' ? 'https://pin.it/7HGBlP4eI' : 'https://pin.it/3kEaZX42Q';
+  window.open(url, '_blank');
+}
+
+/* Falling Hearts */
 const container = document.querySelector('.hearts-container');
 function createHeart() {
   const heart = document.createElement('div');
@@ -346,17 +521,17 @@ function createHeart() {
 }
 setInterval(createHeart,300);
 
-/* Stacked gallery */
+/* Stacked Gallery */
 const stackedGallery = document.getElementById('stacked-gallery');
 const stackedImages = Array.from(stackedGallery.querySelectorAll('img'));
-const originalSrcs = stackedImages.map(img => img.src);
 
-stackedImages.forEach(img => {
+stackedImages.forEach((img, i) => {
+  img.dataset.index = i; // store current index
   img.addEventListener('click', () => {
-    let currentIndex = originalSrcs.indexOf(img.src);
-    let nextIndex = (currentIndex + 1) % originalSrcs.length;
-    img.src = originalSrcs[nextIndex];
-    stackedImages.forEach((i, idx) => { i.style.zIndex = stackedImages.length - idx; });
+    let currentIndex = parseInt(img.dataset.index);
+    let nextIndex = (currentIndex + 1) % stackedImages.length;
+    img.src = stackedImages[nextIndex].src;
+    img.dataset.index = nextIndex; // update index
   });
 });
 
@@ -397,21 +572,14 @@ function updateCountdown() {
 updateCountdown();
 setInterval(updateCountdown,1000);
 
-/* Send to Google Sheets and Confirmation page */
+/* Send RSVP to Google Sheets */
 function send() {
   const name = document.getElementById("name").value.trim();
   const attendance = document.querySelector('input[name="attendance"]:checked');
   const guests = document.querySelector('input[name="guests"]:checked');
   const message = document.getElementById("message").value.trim();
-
-  if (!name) {
-    alert("Please enter your name 😊");
-    return;
-  }
-  if (!attendance) {
-    alert("Please select whether you'll attend 💖");
-    return;
-  }
+  if(!name){ alert("Please enter your name 😊"); return; }
+  if(!attendance){ alert("Please select whether you'll attend 💖"); return; }
 
   const params = new URLSearchParams();
   params.append("name", name);
@@ -419,37 +587,28 @@ function send() {
   params.append("guests", guests ? guests.value : "");
   params.append("message", message);
 
-  const webAppUrl = "https://script.google.com/macros/s/AKfycbw2XDkV7o4f_sURFJGVjFFdIkonPNf2sx7Te2VMgYunOWb5zX7IkpJQI5bq2syzArLP/exec"; // <-- Replace with your Google Apps Script Web App URL
+  const webAppUrl = "https://script.google.com/macros/s/AKfycbw2XDkV7o4f_sURFJGVjFFdIkonPNf2sx7Te2VMgYunOWb5zX7IkpJQI5bq2syzArLP/exec";
 
   fetch(webAppUrl + "?" + params.toString(), { method: "GET" })
-    .then(response => {
-      // redirect to confirmation page
+    .then(() => {
       const confUrl = `confirmation.html?name=${encodeURIComponent(name)}&attendance=${encodeURIComponent(attendance.value)}`;
       window.location.href = confUrl;
     })
-    .catch(err => { 
-      alert("Error submitting form. Please try again."); 
-      console.error(err);
-    });
+    .catch(err => { alert("Error submitting form. Please try again."); console.error(err); });
 }
 
-/* Google Maps Init */
+/* Google Maps */
 function initMap() {
   const location = { lat: 30.9758413, lng: 29.6707148 };
-  const map = new google.maps.Map(document.getElementById("map"), {
-    zoom: 15,
-    center: location
-  });
-  new google.maps.Marker({
-    position: location,
-    map: map
-  });
+  const map = new google.maps.Map(document.getElementById("map"), { zoom: 15, center: location });
+  new google.maps.Marker({ position: location, map: map });
 }
 </script>
+<script async
+  defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDO39t_EUPRN2khO-ZPghQ5thX_AZLdfzg&callback=initMap">
 
-<script async defer
-  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC78acD03HDfj0KjQAfqOAT0tWW32pUmQU&callback=initMap">
+
 </script>
-
 </body>
 </html>
