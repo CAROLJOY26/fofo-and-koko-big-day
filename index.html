@@ -531,25 +531,37 @@ function send() {
   const attendance = document.querySelector('input[name="attendance"]:checked');
   const guests = document.querySelector('input[name="guests"]:checked');
   const message = document.getElementById("message").value.trim();
+
   if(!name){ alert("Please enter your name 😊"); return; }
   if(!attendance){ alert("Please select whether you'll attend 💖"); return; }
 
-  const params = new URLSearchParams();
-  params.append("name", name);
-  params.append("attendance", attendance.value);
-  params.append("guests", guests ? guests.value : "");
-  params.append("message", message);
+  const webAppUrl = "https://script.google.com/macros/s/AKfycbx-JGMOtGf2NJBX7TUvCIyYLFQpk4E05P47SSKlgM-EwJp-SF_scexlEGUqlM_8TP3B/exec"; // Replace with your deployed URL
 
-  const webAppUrl = "https://script.google.com/macros/s/AKfycbw2XDkV7o4f_sURFJGVjFFdIkonPNf2sx7Te2VMgYunOWb5zX7IkpJQI5bq2syzArLP/exec";
+  const data = {
+    name: name,
+    attendance: attendance.value,
+    guests: guests ? guests.value : "",
+    message: message
+  };
 
-  fetch(webAppUrl + "?" + params.toString(), { method: "GET" })
-    .then(() => {
+  fetch(webAppUrl, {
+    method: "POST",
+    body: new URLSearchParams(data)
+  })
+  .then(response => response.json())
+  .then(result => {
+    if(result.status === "Success"){
       const confUrl = `confirmation.html?name=${encodeURIComponent(name)}&attendance=${encodeURIComponent(attendance.value)}`;
       window.location.href = confUrl;
-    })
-    .catch(err => { alert("Error submitting form. Please try again."); console.error(err); });
+    } else {
+      alert("There was an error submitting your response. Please try again.");
+    }
+  })
+  .catch(err => {
+    alert("Error submitting form. Please try again.");
+    console.error(err);
+  });
 }
-
 /* Google Maps */
 function initMap() {
   const location = { lat: 30.9758413, lng: 29.6707148 };
