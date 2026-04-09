@@ -92,20 +92,43 @@ body {
   align-items: center;   /* 🔥 ده الأهم */
   text-align: center;
 }
-@media(max-width:900px){
+@media (max-width: 900px) {
   .container {
-    flex-direction: column; /* stack vertically on mobile */
-    align-items: center;
-    padding: 20%;
+    flex-direction: column; /* stack vertically */
+    padding: 20px;          /* mobile-friendly padding */
+    width: 90%;             /* same width as desktop */
   }
+
   .container .photo {
-    width: 80%; /* slightly bigger on mobile */
+    width: 80%;             /* resize photo for mobile */
+    max-width: 300px;       /* prevent too big */
     margin-bottom: 20px;
   }
+
   .container .form-content {
-    width: 100%;
-    ;
+    width: 100%;            /* full width */
+    text-align: center;     /* keep text centered */
   }
+
+  .form-content h2 {
+    font-size: 22px;        /* smaller heading for mobile */
+  }
+
+  input, textarea, button {
+    width: 90%;             /* almost full width for form elements */
+    max-width: none;        /* remove max-width restriction */
+    font-size: 16px;        /* readable on mobile */
+  }
+
+  #countdown-container, #map {
+    width: 90%;             /* scale down for mobile */
+  }
+
+  .gallery-container {
+    width: 90%;
+    height: auto;           /* make gallery responsive */
+  }
+
 }
 
 .form-content h2 {
