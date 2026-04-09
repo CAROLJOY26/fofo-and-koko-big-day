@@ -307,24 +307,28 @@ button:hover { background: #333; }
 
 
 /* ===== Mobile Friendly Adjustments ===== */
-@media(max-width: 900px){
-  .container {
+/* Stack photo above container on mobile */
+@media (max-width: 900px) {
+  .section {
     flex-direction: column; /* stack vertically */
-    align-items: center;
-    padding: 20px; /* smaller padding on mobile */
-    margin: 20px auto;
+    align-items: center;    /* center horizontally */
   }
-  .container .photo {
-    width: 80%; /* responsive image */
-    margin-bottom: 20px;
+  .photo-outside {
+    margin-bottom: 20px;    /* space between photo and form */
+    width: 90%;             /* responsive width */
+    max-width: 400px;
   }
-  .container .form-content {
+  .photo-outside img {
     width: 100%;
-    min-width: auto;
+    height: auto;
+    border-radius: 50px;
   }
-  .form-content h2 {
-    font-size: 24px; /* smaller headline */
+  .container {
+    width: 95%;
+    max-width: 600px;
+    margin: 0 auto;
   }
+}
   input, textarea, button {
     max-width: 90%; /* easier to tap on mobile */
     font-size: 16px;
