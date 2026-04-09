@@ -314,7 +314,6 @@ button:hover { background: #333; }
     font-size: 16px;
   }
 
-  /* Stack sections vertically */
   .section {
     flex-direction: column;
     align-items: center;
@@ -331,7 +330,7 @@ button:hover { background: #333; }
   .photo-outside img {
     width: 100%;
     height: auto;
-    border-radius: 40px;
+    border-radius: 20px;
   }
 
   /* RSVP container */
@@ -339,7 +338,7 @@ button:hover { background: #333; }
     flex-direction: column;
     width: 95%;
     max-width: 500px;
-    padding: 20px;
+    padding: 20px; /* reduced from 20% to 20px */
     margin: 20px auto;
     gap: 20px;
   }
@@ -354,30 +353,33 @@ button:hover { background: #333; }
   }
 
   input, textarea, button {
-    max-width: 95%;
+    max-width: 100%;
     font-size: 16px;
   }
 
   /* Map */
   #map {
     width: 95%;
-    height: 200px;
+    height: 250px; /* slightly taller */
     margin: 20px auto;
   }
 
   /* Gallery */
   .gallery-container {
-    width: 90%;
-    height: 200px;
+    width: 95%;
+    height: auto;
+    min-height: 200px;
   }
   .gallery-container img {
     width: 100%;
-    height: 200px;
+    height: auto;
+    max-height: 250px;
+    object-fit: cover;
   }
 
   /* Countdown */
   #countdown-container {
-    width: 90%;
+    width: 95%;
     padding: 20px;
   }
   .countdown-block {
